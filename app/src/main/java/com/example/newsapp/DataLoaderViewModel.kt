@@ -23,6 +23,26 @@ class DataLoaderViewModel : ViewModel() {
             }
         }
     }
+    fun categoryNews(category: String) {
+        viewModelScope.launch {
+            try {
+                val response = Datasource().categoryNews(category)
+                _news.postValue(Result.success(response))
+            } catch (e: Exception) {
+                _news.postValue(Result.error(e))
+            }
+        }
+    }
+    fun searchNews(searchString: String) {
+        viewModelScope.launch {
+            try {
+                val response = Datasource().searchNews(searchString)
+                _news.postValue(Result.success(response))
+            } catch (e: Exception) {
+                _news.postValue(Result.error(e))
+            }
+        }
+    }
 }
 
 
